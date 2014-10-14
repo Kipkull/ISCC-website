@@ -1,0 +1,33 @@
+B1;2c<?
+
+include('db_connect.php');
+
+
+$first= $_POST['first_name'];
+$last = $_POST['last_name'];
+$username = $_POST['username'];
+
+$first = 'Lisa';
+
+$sql = "select * from clients  ";
+$result = mysql_query($sql);
+$json = array();
+echo 1
+while($row = mysql_fetch_array($result))     
+  {
+ 
+    $json[]= array(
+		   'first' => $row['FirstName'],
+		   'last' => $row['LastName'],
+		   'username'=> $row['UserName'],
+    'id' => $row['ISCCID']
+		   );
+  }
+
+$jsonstring = json_encode($json);
+
+echo $jsonstring;
+
+mysql_close();
+
+?>

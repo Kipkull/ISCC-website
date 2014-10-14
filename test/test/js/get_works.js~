@@ -1,0 +1,48 @@
+var work_table = document.getElementById("work_table");
+work_table.innerHTML = "";
+
+var work_string = document.getElementById("work_string").innerHTML;
+
+
+var obj = $.parseJSON(work_string);
+
+
+for (var i = 0 ; i < obj.length ; i++)
+    {
+	var counter = obj[i];
+	var tr = document.createElement("tr");
+	var td = document.createElement("td");
+	var index = parseInt(i) + parseInt(1);
+        
+	var createA = document.createElement('a');
+	var url = "";
+	createA.setAttribute('href', url);
+	var div = document.createElement("div");
+	div.innerHTML = index;
+	createA.appendChild(div);
+	td.appendChild(createA);
+	tr.appendChild(td);
+	
+
+
+
+	td = document.createElement("td");
+	td.innerHTML = counter.date;
+	tr.appendChild(td);
+
+	td = document.createElement("td");
+        td.innerHTML = counter.type;
+        tr.appendChild(td);
+
+
+	td = document.createElement("td");
+	td.innerHTML = counter.hours;
+	tr.appendChild(td);
+
+
+	table.appendChild(tr);
+
+    }
+
+
+document.getElementById("work_string").innerHTML = "";
