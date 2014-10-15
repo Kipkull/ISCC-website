@@ -1,23 +1,10 @@
 <?php
-
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-
 include('db_connect.php');
 
 $ProjID = $_GET['ProjID'];
-
-
-
-
-#$ID = "651";
-#echo $ID;
 $sql ="select * from projects where ProjID = '$ProjID' ";
-#echo $sql;
-
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
-
 $ProjectTitle = $row['ProjectTitle'];
 $ProjectDesc = $row['ProjectDesc'];
 $StartDate = $row['StartDate'];
@@ -36,11 +23,6 @@ $client_search = "select * from clients where ISCCID in  ( select ISCCID from cl
 $result = mysql_query($client_search);
 
  $json = array();
-
-
-#$row = mysql_fetch_array($result);
-
-
  while ($row = mysql_fetch_array($result))
    {
      $json[] = array(
@@ -76,7 +58,6 @@ $jsonstring_consultant = json_encode($json_consultant);
 
 
 $task_search = "select * from tasks where ProjID = '$ProjID'" ;
-echo $task_search;
 $result = mysql_query($task_search);
 
 $json_task = array();
@@ -115,17 +96,6 @@ while ($row = mysql_fetch_array($result))
   }
 
 $jsonstring_work = json_encode($json_work);
-
-
-
-
-
-
-
-
-
-
-
 ?>
 <html lang="en"><head>
     <meta charset="utf-8">
@@ -165,13 +135,19 @@ $jsonstring_work = json_encode($json_work);
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Track Time</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Calendar</a></li>
-            <li><a href="#">Billing</a></li>
-            <li><a href="#">Export Data</a></li>
-            <li><a href="#">SQL admin</a></li>
-          </ul>
+        	<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://iub.edu/~isccint/test/Client.html">Client</a></li>
+                <li><a href="https://iub.edu/~isccint/test/Consultant.html">Consultant</a></li>
+              </ul>
+            </li>
+            <li><a href="https://iub.edu/~isccint/home/Reports.php">Reports</a></li>
+            <li><a href="https://iub.edu/~isccint/Work_Calendar.php">Calendar</a></li>
+            <li><a href="https://iub.edu/~isccint/Invoicing.html">Billing</a></li>
+            <li><a href="https://iub.edu/~isccint/Export.htm">Export Data</a></li>
+            <li><a href="https://www.iub.edu/~isccint/phpmyadmin/">SQL admin</a></li>  
+	</ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>

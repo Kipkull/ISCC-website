@@ -3,16 +3,15 @@
 include('db_connect.php');
 
 
-$ISCCID = $_GET['ISCCID'];
-$FirstName = $_GET['FirstName'];
-$LastName = $_GET['LastName'];
-$ProjID = $_GET['ProjID'];
+$ISCCID = $_POST['ISCCID'];
+
+$ProjID = $_POST['ProjID'];
 $ProjectTitle = $_GET['ProjectTitle'];
 
 
 $sql = "Insert into clientproject (ISCCID, ProjID, LastName, FirstName, ProjectTitle)
 VALUES
-('$ISCCID', '$ProjID', '$LastName', '$FirstName', '$ProjectTitle' )
+(select ISCCID, '$ProjID', LastName, FirstName, '$ProjectTitle' from clients where ISCCID = '$ISCCID')
 ";
 
 $result = mysql_query($sql);

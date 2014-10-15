@@ -3,17 +3,15 @@ include('db_connect.php');
 $IUID= $_GET['IUID'];
 #client search command with first last and username
 
-$sql = "
-select iu.IUID AS IUID, iu.Username as Username, iu.FirstName as FirstName, iu.LastName as LastName, iu.Status as Status, iu.Rank as Rank, iu.DeptCode as DeptCode, iu.DeptDesc as DeptDesc, iu.SchoolCode as SchoolCode, iu.SchoolDesc as SchoolDesc, iu.Campus as Campus, dp.FieldGroup as FieldGroup from iumasterlist as iu join iudept as dp on iu.DeptCode = dp.DeptCode and iu.SchoolCode = dp.SchoolCode where IUID = '$IUID'
-";
+$sql = "select * from iumasterlist where IUID = '$IUID'";
 $result = mysql_query($sql);
 $row = mysql_fetch_array($result);
 
 		   $IUID = $row['IUID'];
-		   $FirstName = $row['FirstName'];
+		$FirstName = $row['FirstName'];
                    $LastName= $row['LastName'];
-                   $Username = $row['Username'];   
-		   $Status= $row['Status'];
+                $Username = $row['Username'];   
+		$Status= $row['Status'];
                    $Rank= $row['Rank'];
                    $DeptDesc= $row['DeptDesc'];
                    $SchoolDesc= $row['SchoolDesc'];
@@ -93,26 +91,26 @@ Undergrads and Staff will probably need to be added.</th>
           <td>
             <code>Last Name</code>
           </td>
-          <td ><input type = "text" name = "lastname" readonly value = "<?echo $LastName?>"></td>
+          <td ><input type = "text" id = "lastname" readonly value = "<?echo $LastName?>"></td>
         </tr>
         <tr>
           <td>
             <code>First Name</code>
           </td>
-          <td><input type = "text" name = "firstname" value = "<?echo $FirstName?>" readonly></td>
+          <td><input type = "text" id = "firstname" value = "<?echo $FirstName?>" readonly></td>
         </tr>
         <tr>
           <td>
             <code>IU Username</code>
           </td>
-          <td ><input name = "username" type = "text" value = "<?echo $Username?>" readonly ></td>
+          <td ><input id = "username" type = "text" value = "<?echo $Username?>" readonly ></td>
         </tr>
         <tr>
           <td>
             <code>Campus</code>
           </td>
           <td >
-	<input  name = "campus" type = "text" value="<?echo $Campus?>">
+	<input  id = "campus" type = "text" value="<?echo $Campus?>">
 	  </td>
         </tr>
         <tr>
@@ -120,7 +118,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>School</code>
           </td>
 	  <td >
-	<input type= "text" name = "school" value = "<?echo $SchoolCode?>">	  
+	<input type= "text" id = "school" value = "<?echo $SchoolCode?>">	  
 	</td>
         </tr>
 	 <tr>
@@ -128,7 +126,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Department</code>
           </td>
         	<td>
-		<input type = "text" name = "depart" value = "<?echo $DeptCode?>">
+		<input type = "text" id = "depart" value = "<?echo $DeptCode?>">
 		</td>
 	</tr>
 	  <tr>
@@ -136,7 +134,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Status</code>
           </td>
           <td >
-	<input type = "text" name = "status" value="<?echo Status?>">
+	<input type = "text" id = "status" value="<?echo Status?>">
 	  </td>
 	  </tr>
 	    <tr>
@@ -144,7 +142,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Alternate e-mail</code>
           </td>
           <td>
-	    <input type="text" name = "email"/>
+	    <input type="text" id = "email"/>
 	  </td>
 	  </tr>
 	<tr>
@@ -152,7 +150,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Notes</code>
           </td>
           <td>
-	    <input style  = "width : 80%%" type="text" name = "note"/>
+	    <input style  = "width : 80%%" type="text" id = "note"/>
 	  </td>
 	  </tr>
 	<tr>
@@ -160,7 +158,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Rank</code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "rank"/>
+            <input style  = "width : 80%%" type="text" id = "rank"/>
           </td>
           </tr>
 	<tr>
@@ -168,7 +166,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>External Company</code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "externalcompany">
+            <input style  = "width : 80%%" type="text" id = "externalcompany">
           </td>
           </tr>
 <tr>
@@ -176,7 +174,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Contact Address</code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "contact_address">
+            <input style  = "width : 80%%" type="text" id = "contact_address">
           </td>
           </tr>
 <tr>
@@ -184,7 +182,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>FOName </code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "FOName"/>
+            <input style  = "width : 80%%" type="text" id = "FOName"/>
           </td>
           </tr>
 	<tr>
@@ -192,7 +190,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>DeptDesc</code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "DeptDesc"/>
+            <input style  = "width : 80%%" type="text" id = "DeptDesc"/>
           </td>
           </tr>
 	<tr>
@@ -200,7 +198,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>SchoolDesc</code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "SchoolDesc">
+            <input style  = "width : 80%%" type="text" id = "SchoolDesc">
           </td>
           </tr>
 	<tr>
@@ -208,7 +206,7 @@ Undergrads and Staff will probably need to be added.</th>
             <code>Archived</code>
           </td>
           <td>
-            <input style  = "width : 80%%" type="text" name = "Archived"/>
+            <input style  = "width : 80%%" type="text" id = "Archived"/>
           </td>
           </tr>
       </tbody>

@@ -54,7 +54,7 @@ $notes = $row['Notes'];
   </head>
 
   <body>
-
+<input type = "hidden" value = "<?echo $ID?>" id = "ISCCID">
   <div class="col-md-3">
   </div>
   <div class="col-md-7">
@@ -71,13 +71,19 @@ $notes = $row['Notes'];
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Track Time</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Calendar</a></li>
-            <li><a href="#">Billing</a></li>
-            <li><a href="#">Export Data</a></li>
-            <li><a href="#">SQL admin</a></li>
-          </ul>
+	<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://iub.edu/~isccint/test/Client.html">Client</a></li>
+                <li><a href="https://iub.edu/~isccint/test/Consultant.html">Consultant</a></li>
+              </ul>
+            </li>
+            <li><a href="https://iub.edu/~isccint/home/Reports.php">Reports</a></li>
+            <li><a href="https://iub.edu/~isccint/Work_Calendar.php">Calendar</a></li>
+            <li><a href="https://iub.edu/~isccint/Invoicing.html">Billing</a></li>
+            <li><a href="https://iub.edu/~isccint/Export.htm">Export Data</a></li>
+            <li><a href="https://www.iub.edu/~isccint/phpmyadmin/">SQL admin</a></li>
+	</ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -188,7 +194,6 @@ $notes = $row['Notes'];
         <tr>
           <th>Project Title</th>
           <th>Start Date</th>
-          <th>Latest Date</th>
         </tr>
       </thead>
       <tbody id = "project_table">
@@ -218,22 +223,24 @@ $notes = $row['Notes'];
         });
     });
 </script>
-    <script src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+ <script src="https://iub.edu/~isccint/test/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
    
   
 
 </body>
-<script src = "https://iub.edu/~isccint/test/js/client_project.js">
+<script src = "https://iub.edu/~isccint/test/js/get_project_client_info.js">
 </script>
 <script>
 	var button = document.getElementById("search_project");
 	var key = document.getElementById("keywords").value;
-	button.onclick = functoin(){search_project(key);};
+	button.onclick = function(){search_project(key);};
 	function search_project(key)
 	{
+		var key = document.getElementById("keywords").value;
 		var client = document.getElementById("ISCCID").value;
-		var url = "some php?ISCCID=" + client + "&key=" + key;
+		var url = "https://iub.edu/~isccint/test/php/project_search.php?ISCCID=" + client + "&key=" + key;
 	
 		window.location = url;
 	}

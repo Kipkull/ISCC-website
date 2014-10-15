@@ -1,11 +1,9 @@
 <?php
 
 include('db_connect.php');
-echo 1;
+
 
 $ISCCID = $_GET['ISCCID'];
-$FirstName = $_GET['FirstName'];
-$LastName = $_GET['LastName'];
 $ProjectTitle = $_GET['ProjectTitle'];
 $ProjectDesc = $_GET['ProjectDesc'];
 $ProjectNotes = $_GET['ProjectNotes'];
@@ -24,10 +22,10 @@ VALUES
 ('$ProjectTitle', '$ProjectDesc', '$ProjectNotes', '$ProjectBill', '$Supervisor', '$TypeP', 
 	'$Status', '$BillingAccount', '$StartDate')";
 
-$sql2 = "Insert into clientproject Select '$ISCCID', ProjID, '$LastName', '$FirstName', '$ProjectTitle' 
-from projects where ProjectTitle = '$ProjectTitle' and ProjectDesc = '$ProjectDesc' and ProjectNotes = '$ProjectNotes'
-and ProjectBill = '$ProjectBill' and Supervisor = '$Supervisor' and TypeP = '$TypeP' 
-and Status = '$Status' and BillingAccount = '$BillingAccount' and StartDate = '$StartDate'
+$sql2 = "Insert into clientproject Select cl.ISCCID, pj.ProjID, cl.LastName, cl.FirstName, pj.ProjectTitle 
+from projects as pj, clients as cl where pj.ProjectTitle = '$ProjectTitle' and pj.ProjectDesc = '$ProjectDesc' and pj.ProjectNotes = '$ProjectNotes'
+and pj.ProjectBill = '$ProjectBill' and pj.Supervisor = '$Supervisor' and pj.TypeP = '$TypeP' 
+and pj.Status = '$Status' and pj.BillingAccount = '$BillingAccount' and pj.StartDate = '$StartDate' and cl.ISCCID = '$ISCCID'
 ";
 
 $result1 = mysql_query($sql1);

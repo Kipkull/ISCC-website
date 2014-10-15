@@ -14,7 +14,7 @@ if ($last == NULL) {
 
 #client search command with first last and username
 
-$sql = "select disntict IUID, FirstName, LastName, Status, Rank, DeptDesc, SchoolDesc, Campus
+$sql = "select distinct IUID, FirstName, LastName, Status, Rank, DeptDesc, SchoolDesc, Campus
 from iumasterlist where LastName rlike '$last' and FirstName rlike '$first'";
 
 $result = mysql_query($sql);

@@ -41,8 +41,21 @@ $note = $row['ConNotes'];
 
     <!-- Bootstrap core CSS -->
     <link href="https://iub.edu/~isccint/test/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet">
- 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<link rel="stylesheet" href = "https://iub.edu/~isccint/test/jquery-ui-1.11.1/jquery-ui.css" >
 
+<script src = "https://iub.edu/~isccint/test/jquery-ui-1.11.1/jquery-ui.js" > </script>
+ <script>
+  $(function() {
+$( "#startdate" ).datepicker();  
+});
+  </script>
+	<script>
+  $(function() {
+    $( "#enddate" ).datepicker();
+  });
+  </script>
+	
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -68,13 +81,20 @@ $note = $row['ConNotes'];
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Track Time</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Calendar</a></li>
-            <li><a href="#">Billing</a></li>
-            <li><a href="#">Export Data</a></li>
-            <li><a href="#">SQL admin</a></li>
-          </ul>
+	<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://iub.edu/~isccint/test/Client.html">Client</a></li>
+                <li><a href="https://iub.edu/~isccint/test/Consultant.html">Consultant</a></li>
+              </ul>
+            </li>
+            <li><a href="https://iub.edu/~isccint/home/Reports.php">Reports</a></li>
+            <li><a href="https://iub.edu/~isccint/Work_Calendar.php">Calendar</a></li>
+            <li><a href="https://iub.edu/~isccint/Invoicing.html">Billing</a></li>
+            <li><a href="https://iub.edu/~isccint/Export.htm">Export Data</a></li>
+            <li><a href="https://www.iub.edu/~isccint/phpmyadmin/">SQL admin</a></li>
+          
+	</ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -152,43 +172,58 @@ $note = $row['ConNotes'];
       <thead>
         <tr>
           <th>Project Title</th>
-       	  <th>Start Date</th>
-	  <th>Latest Date</th>
+       	  <th>WorkBill</th>
+	  <th>Hours</th>
 	</tr>
       </thead>
       <tbody id = "project_table">
       </tbody>
     </table>
 <input type = "hidden" value = <?echo $ID?>  id = "ConsID">
-
-<input id = "filter" type = "button" value = "Filter" >                 
-  <input type = "text" id = "start" style = "width:5%">     
-hours to                                 
-<input type = "text" id = "end" style = "width : 5%">   
-hours
-
-<div class =  style = "text-align: center">
+	<input type = "hidden" id = "count" value = "0">
+    <div class="col-md-8">
+    <div class = "next">
+      <select class="form-control" style = "width : 20%" id = "page_number">
+	<option selected >page number </option>
+	<option>1</option> 
+      </select>
+      </div>
+    </div>
+     <div class="col-md-5">
+	<input id = "filter"  type = "button" class = "btn btn-success" value = "Filter" >                 
+	<input placeholder = "Date" style = "width:20%" type="text" id="startdate">
+ to                                 
+<input placeholder = "Date"  type="text" style = "width:20%"id="enddate">
+  
+   </div>
+</div>
+<div class = "col-md-1">
+</div>
+<div class = "col-md-10">
+<div class  >
 <h3>Tasks on going</h3>
 </div>
 <table class="table table-striped">
       <thead>
         <tr>
-          <th>Tasks</th>
-  
-        </tr>
+          <th>Tasks ID</th>
+	<th>ProjID</th>
+	<th>ProjectTitle</th> 
+	 <th>Status</th>
+	<th>Priority</th>
+        <th>Due Date</th>
       </thead>
-      <tbody id = "project_table">
+      <tbody id = "task_table">
 
         </tr>
       </tbody>
     </table>
-
+</div>
 </div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
         $(document.body).css('padding-top', $('#topnavbar').height() + 30);

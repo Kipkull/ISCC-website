@@ -3,8 +3,8 @@
 include('db_connect.php');
 
 #$DAY = $_POST['calendar']; # Not useful, change to Date!!!
-$ConsID = $_GET['ConsID'];
-
+$ConsID = $_POST['ConsID'];
+$ConsID = "22";
 $sql = "
 SELECT tk.TaskID AS TaskID, tk.ProjID AS ProjID, pc.ProjectTitle AS ProjectTitle, tk.Status AS 
 Status , tk.Priority AS Priority, tk.DueDate AS DueDate

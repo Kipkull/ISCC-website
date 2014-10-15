@@ -2,6 +2,8 @@
 
 include('db_connect.php');
 
+#create system date
+$CreateDate = date('Y-m-d');
 
 $LastName = $_GET['LastName'];
 $FirstName = $_GET['FirstName'];
@@ -18,7 +20,6 @@ $FOName = $_GET['FOName'];
 $FOContact = $_GET['FOContact'];
 $Archived = $_GET['Archived'];
 $IUID= $_GET['IUID'];
-$CreateDate = $_GET['CreateDate'];
 $DeptCode = $_GET['DeptCode'];
 $SchoolCode = $_GET['SchoolCode'];
 $DeptDesc = $_GET['DeptDesc'];

@@ -2,7 +2,6 @@
 
 $ID = $_GET['ISCCID'];
 $key = $_GET['key'];
-echo $ID;
 #sql query
 ?>
 
@@ -45,19 +44,13 @@ echo $ID;
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-        	<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="https://iub.edu/~isccint/test/Client.html">Client</a></li>
-                <li><a href="https://iub.edu/~isccint/test/Consultant.html">Consultant</a></li>
-              </ul>
-            </li>
-            <li><a href="https://iub.edu/~isccint/home/Reports.php">Reports</a></li>
-            <li><a href="https://iub.edu/~isccint/Work_Calendar.php">Calendar</a></li>
-            <li><a href="https://iub.edu/~isccint/Invoicing.html">Billing</a></li>
-            <li><a href="https://iub.edu/~isccint/Export.htm">Export Data</a></li>
-            <li><a href="https://www.iub.edu/~isccint/phpmyadmin/">SQL admin</a></li>
-	</ul>
+            <li><a href="#">Track Time</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href="#">Calendar</a></li>
+            <li><a href="#">Billing</a></li>
+            <li><a href="#">Export Data</a></li>
+            <li><a href="#">SQL admin</a></li>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -77,8 +70,8 @@ echo $ID;
   <div class="col-md-10">
   <p class="lead blog-description">Exist Project</p>
 	
-<input type = "hidden" id = "ISCCID" value = "<?echo $ID?>" >
-<input type = "hidden" id = "key" value = "<?echo $key?> ">
+<input type = "hidden" id = "ISCCID" value = <?echo $ID?>>
+<input type = "hidden" id = "key" value = <?echo $key?> >
 
     <table class="table table-striped">
       <thead>
@@ -115,6 +108,76 @@ echo $ID;
 <div class = "col-md-1">
 </div>
 <div class = "col-md-8">        
+ <table class="table table-bordered table-striped">
+      <colgroup>
+        <col class="col-xs-1">
+        <col class="col-xs-7">
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="2" scope="colgroup">
+Information
+</th>        
+</tr>
+      </thead>
+      <tbody>
+	 <tr>
+          <td>
+            <code>ProjectTitle</code>
+          </td>
+          <td><input id = "projtitle" type="text" /></td>
+        </tr>
+        <tr>
+        <tr>
+          <td>
+            <code>ProjectDesc</code>
+          </td>
+          <td><input id = "projectdesc" type="text" /></td>
+        </tr>
+        <tr>
+          <td>
+            <code>ProjectNotes</code>
+          </td>
+          <td><input id = "projectnotes" type="text" /></td>
+        </tr>
+        <tr>
+          <td>
+            <code>ProjectBill</code>
+          </td>
+          <td><input id ="projectbill" type="text" /> </td>
+        </tr>
+	<tr>
+          <td>
+            <code>Supervisor</code>
+          </td>
+          <td><input id ="supervisor" type="text" /> </td>
+        </tr>
+	<tr>
+          <td>
+            <code>TypeP</code>
+          </td>
+          <td><input id ="type" type="text" /> </td>
+        </tr>
+	<tr>
+          <td>
+            <code>Status</code>
+          </td>
+          <td><input id ="status" type="text" /> </td>
+        </tr>
+	<tr>
+          <td>
+            <code>BillingAccount</code>
+          </td>
+          <td><input id ="account" type="text" /> </td>
+        </tr>
+	<tr>
+          <td>
+            <code>StartDate</code>
+          </td>
+          <td><input id ="startdate" type="text" /> </td>
+        </tr>
+      </tbody>
+    </table>
     <div style = "text-align:center;">
       <button type="button" class="btn btn-primary" id = "add_client_button" >Add Project</button>
     </div>
@@ -135,12 +198,12 @@ echo $ID;
         });
     });
 </script>
-    <script src="https://iub.edu/~isccint/test/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <script src="boo://iub.edu/~isccint/test/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
     </div>
       <div style = "text-align: center;margin-top : 5px"  >
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 </body>
-<script src = "../js/client_project.js">
-</script
+<script src = "../js/client_no_project.js">
+</script>
 </html>
 

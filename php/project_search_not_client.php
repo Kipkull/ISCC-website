@@ -2,27 +2,33 @@
 
 include('db_connect.php');
 
-$ISCCID = $_GET['ISCCID'];
+$ISCCID = $_POST['ISCCID'];
 
-$keyword= $_GET['keyword'];
+$keyword= $_POST['keyword'];
+
+#$ISCCID = 675;
+#$keyword = 'test';
 
 if ($keyword == NULL) {
 	$keyword = '.*';
 }
-
 #client search command with first last and username
-
-$sql1 = "select nc.ISCCID AS ISCC, nc.ProjID as ProjID, nc.LastName as LastName, 
+$sql = "
+select nc.ProjID as ProjID, nc.ISCCID AS ISCC, nc.LastName as LastName, 
 nc.FirstName as FirstName, nc.ProjectTitle as ProjectTitle 
 from
-(select ProjID, ProjectTitle, ISCCID, FirstName, LastName 
-	from clientproject where ISCCID <> '$ISCCID' and ProjectTitle rlike '$keyword' 
-	group by ProjID) as nc 
+(select cp.ISCCID AS ISCCID, pj.ProjID as ProjID, cp.LastName as LastName, 
+cp.FirstName as FirstName, pj.ProjectTitle as ProjectTitle 
+from projects as pj 
+left join clientproject as cp on pj.ProjID = cp.ProjID and cp.ISCCID <> '$ISCCID' where pj.ProjectTitle rlike '$keyword') as nc 
 left join 
 (select ISCCID, ProjID from clientproject where ISCCID = '$ISCCID') as ic  
 on nc.ProjID = ic.ProjID 
 where ic.ISCCID is Null
+group by ProjID
 ";
+
+
 
 $result = mysql_query($sql);
 $json = array();
@@ -30,7 +36,7 @@ $json = array();
 while($row = mysql_fetch_array($result))     
   {
     $json[]= array(
-		   'ISCCID' => $row['ISCCID'],
+		   'ISCCID' => $row['ISCC'],
 		   'FirstName' => $row['FirstName'],
 		   'LastName' => $row['LastName'],
 		   'ProjID' => $row['ProjID'],
@@ -39,7 +45,8 @@ while($row = mysql_fetch_array($result))
   }
 
 $jsonstring = json_encode($json);
-$jsonstrong = '1';
+echo $jsonstring;
+
 mysql_close();
 
 ?>

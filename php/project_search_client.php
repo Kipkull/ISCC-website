@@ -1,13 +1,11 @@
 <?php
 
 include('db_connect.php');
-echo 1;
 
 $ISCCID = $_GET['ISCCID'];
 
 $keyword= $_GET['keyword'];
 
-echo 3;
 if ($keyword == NULL) {
 	$keyword = '.*';
 }

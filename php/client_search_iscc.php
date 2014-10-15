@@ -12,7 +12,7 @@ if ($last == NULL) {
 }
 #client search command with first last and username
 
-$sql = "select disntict ISCCID, FirstName, LastName, Status, Rank, DeptDesc, SchoolDesc, FieldGroup, Campus
+$sql = "select distinct ISCCID, FirstName, LastName, Status, Rank, DeptDesc, SchoolDesc, FieldGroup, Campus
 from clients where LastName rlike '$last' and FirstName rlike '$first'";
 
 $result = mysql_query($sql);
@@ -25,10 +25,14 @@ while($row = mysql_fetch_array($result))
 		   'FirstName' => $row['FirstName'],
 		   'LastName'=> $row['LastName'],
 		   'Status'=> $row['Status'],
+		   'Username'=>$row['Username'],
 		   'Rank'=> $row['Rank'],
 		   'DeptDesc'=> $row['DeptDesc'],
 		   'SchoolDesc'=> $row['SchoolDesc'],
-    	   'FieldGroup' => $row['FieldGroup'],
+		   'SchoolCode' => $row['SchoolCode'],
+		   'DeptCode' => $row['DeptCode'],
+		   'Title' => $row['Title'], 
+	    	   'FieldGroup' => $row['FieldGroup'],
 		   'Campus' => $row['Campus'] 
 		   );
   }

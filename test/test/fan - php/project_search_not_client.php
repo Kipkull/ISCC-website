@@ -12,14 +12,16 @@ if ($keyword == NULL) {
 
 #client search command with first last and username
 
-$sql1 = "select nc.ISCCID AS ISCC, nc.ProjID as ProjID, nc.LastName as LastName, 
+$sql1 = "select nc.ProjID as ProjID, nc.ISCCID AS ISCC, nc.LastName as LastName, 
 nc.FirstName as FirstName, nc.ProjectTitle as ProjectTitle 
 from
-(select * from clientproject where ISCCID <> '$ISCCID' and ProjectTitle rlike '$keyword') as nc 
+(select cp.ISCCID AS ISCCID, pj.ProjID as ProjID, cp.LastName as LastName, 
+cp.FirstName as FirstName, pj.ProjectTitle as ProjectTitle from projects as pj left join clientproject as cp on pj.ProjID = cp.ProjID and cp.ISCCID <> '$ISCCID' where pj.ProjectTitle rlike '$keyword') as nc 
 left join 
 (select ISCCID, ProjID from clientproject where ISCCID = '$ISCCID') as ic  
 on nc.ProjID = ic.ProjID 
 where ic.ISCCID is Null
+group by ProjID
 ";
 
 $result = mysql_query($sql);

@@ -63,13 +63,20 @@ mysql_close();
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Track Time</a></li>
-            <li><a href="#">Reports</a></li>
-            <li><a href="#">Calendar</a></li>
-            <li><a href="#">Billing</a></li>
-            <li><a href="#">Export Data</a></li>
-            <li><a href="#">SQL admin</a></li>
-          </ul>
+         	<li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Track <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="https://iub.edu/~isccint/test/Client.html">Client</a></li>
+                <li><a href="https://iub.edu/~isccint/test/Consultant.html">Consultant</a></li>
+              </ul>
+            </li>
+            <li><a href="https://iub.edu/~isccint/home/Reports.php">Reports</a></li>
+            <li><a href="https://iub.edu/~isccint/Work_Calendar.php">Calendar</a></li>
+            <li><a href="https://iub.edu/~isccint/Invoicing.html">Billing</a></li>
+            <li><a href="https://iub.edu/~isccint/Export.htm">Export Data</a></li>
+            <li><a href="https://www.iub.edu/~isccint/phpmyadmin/">SQL admin</a></li>
+ 
+	</ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
@@ -145,8 +152,6 @@ mysql_close();
        </tbody>
     </table>
 </div>
-
-
 	  <form action="https://iub.edu/~isccint/test/Client_add.html">
     <input type="submit" class="btn btn-primary" value = "Add Client">
 </form>

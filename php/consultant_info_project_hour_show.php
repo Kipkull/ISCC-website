@@ -3,8 +3,10 @@
 include('db_connect.php');
 
 $ConsID = $_POST['ConsID'];
-$DAY = $_POST['calendar_from'];
-$PDAY = $_POST['calendar_to'];
+$PDAY = $_POST['calendar_from'];
+$DAY = $_POST['calendar_to'];
+#$DAY = '10/14/2014';
+#$PDAY = '01/01/2014';
 
 if ($DAY == NULL) {
     $DAY = date('Y-m-d');
@@ -17,6 +19,8 @@ if ($PDAY == NULL) {
 }else {
 	$PDAY = date('Y-m-d', strtotime($PDAY));
 }
+#echo $DAY;
+#echo $PDAY;
 
 $sql = "
 select wk.ProjID as ProjID, pj.ProjectTitle as ProjectTitle, wk.WorkBill as WorkBill, wk.THours as THours from
@@ -34,8 +38,8 @@ while($row = mysql_fetch_array($result))
  
     $json[]= array(
 		    'ProjID' => $row['ProjID'],
-		    'ProjectTitle' => $row['ProjectTitle']
-		    'WorkBill' => $row['WorkBill']
+		    'ProjectTitle' => $row['ProjectTitle'],
+		    'WorkBill' => $row['WorkBill'],
 		    'THours' => $row['THours']
 		   );
   }
